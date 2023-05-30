@@ -26,20 +26,19 @@
                         <el-button @click="$router.push('/register')" style="margin-left:5rem">注册</el-button>
                     </el-form-item>
                 </el-form>
-                <div style="font-size:0.8rem; display: flex; justify-content: end;">
-                    <el-button type="text" @click="$router.push('/forget')">
-                        忘记密码
-                    </el-button>
-                </div>
             </div>
         </el-card>
+        <el-button @click="changeTheme">
+            切换主题
+        </el-button>
     </div>
 </template>
 
 <script>
-import { setToken } from '@/utils/auth';
+import { setToken, setUserId } from '@/utils/auth';
 import { successMsg, errorMsg } from '@/utils/message';
 export default {
+    inject: ['changeSkin'],
     components: {
         vertifyCode: () => import("@/components/VertifyCode"),
     },
@@ -71,6 +70,9 @@ export default {
         }
     },
     methods: {
+        changeTheme() {
+            this.changeSkin()
+        },
         submit() {
             this.$refs['registerForm'].validate(async (result) => {
                 if (result) {
@@ -78,18 +80,15 @@ export default {
                     if (this.validateCode.toLowerCase() === this.model.validateCode.toLowerCase()) {
                         await this.$http.post('/user/login', this.model).then(async res => {
                             console.log(res);
-                            if (res.data.data.userRole.id === 4) {
-                                errorMsg('无权限')
-                                return
-                            }
-                            setToken(res.data.data.tokenHead + ' ' + res.data.data.token)
-
+                            // 保存ID
+                            setUserId(res.data.data.id)
+                            // setToken(res.data.data.tokenHead + ' ' + res.data.data.token)
                             // console.log('userInfo:', res.data.data.userInfo);
-                            this.$store.commit('setUserInfo', res.data.data.userInfo)
-                            this.$store.commit('setUserRole', res.data.data.userRole)
+                            // this.$store.commit('setUserInfo', res.data.data.userInfo)
+                            // this.$store.commit('setUserRole', res.data.data.userRole)
                             // 开启WebSocket服务
                             // this.initSocket(res.data.data.userInfo.username)
-                            this.$router.push('/main')
+                            this.$router.push('/info')
                             successMsg('登录成功')
                         })
                     } else {

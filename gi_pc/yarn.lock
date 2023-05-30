@@ -5636,6 +5636,11 @@ text-table@^0.2.0:
   resolved "https://registry.npmmirror.com/text-table/-/text-table-0.2.0.tgz"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
+theme-vue@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/theme-vue/-/theme-vue-0.0.8.tgz#2c653a6684cebd434cdcaf17e1721116f61d3cad"
+  integrity sha512-enhNIl7fw5NqTj5mhzqNPLfLdqDBzezp8Kl+gM1Oi/CQpBRlWTdCzi56AWvihfsdl8O5iv1EelwXhpMzphxidg==
+
 thenify-all@^1.0.0:
   version "1.6.0"
   resolved "https://registry.npmmirror.com/thenify-all/-/thenify-all-1.6.0.tgz"

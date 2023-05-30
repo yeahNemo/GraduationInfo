@@ -6,7 +6,7 @@ import { getToken } from "./auth";
 axios.defaults.withCredentials = true;
 const service = axios.create({
   // baseURL: "http://localhost:8081",
-  baseURL: "http://47.92.228.229:8081",
+  baseURL: "http://47.113.199.179:8081",
 });
 
 service.interceptors.request.use(
